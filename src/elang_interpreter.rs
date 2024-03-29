@@ -24,4 +24,8 @@ impl<'a> ElangInterpreter<'a> {
             communication_protocol: None,
         }
     }
+
+    pub fn launch_interactive_shell(&self) {}
+
+    pub fn interpret_file(&self, file_name: &str) {}
 }
