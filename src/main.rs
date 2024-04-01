@@ -27,7 +27,7 @@ fn main() -> Result<(), Error> {
     let interpreter: ElangInterpreter<'_> = ElangInterpreter::new();
 
     match (args.len(), args.get(1)) {
-        (1, _) => interpreter.launch_interactive_shell(),
+        (1, _) => interpreter.launch_interactive_shell()?,
         (2, Some(file_name)) => interpreter.interpret_file(file_name)?,
         _ => {
             const ERROR_MESSAGE: &str = "FATAL: Args in unknown state!";
