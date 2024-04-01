@@ -14,6 +14,8 @@
  *  limitations under the License.
  */
 
+use std::io::{BufRead, BufReader, Error};
+
 enum CommunicationProtocol {
     Udp,
     Tcp,
@@ -43,5 +45,19 @@ impl<'a> ElangInterpreter<'a> {
 
     pub fn launch_interactive_shell(&self) {}
 
-    pub fn interpret_file(&self, file_name: &str) {}
+    pub fn interpret_file(&self, file_name: &str) -> Result<(), Error> {
+        let file: std::fs::File = std::fs::File::open(file_name)?;
+        let file_reader: BufReader<&std::fs::File> = BufReader::new(&file);
+
+        for line in file_reader.lines() {
+            match line {
+                Ok(x) => self.interpret_line(&x),
+                Err(y) => return Err(y),
+            }
+        }
+
+        Ok(())
+    }
+
+    fn interpret_line(&self, line: &str) {}
 }
