@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-use std::io::{BufRead, BufReader, Error};
+use std::io::{stdin, stdout, BufRead, BufReader, Error, Stdin, Stdout, Write};
 
 enum CommunicationProtocol {
     Udp,
@@ -43,7 +43,19 @@ impl<'a> ElangInterpreter<'a> {
         }
     }
 
-    pub fn launch_interactive_shell(&self) {}
+    pub fn launch_interactive_shell(&self) -> Result<(), Error> {
+        let mut input: String = String::new();
+        let mut stdout: Stdout = stdout();
+        let stdin: Stdin = stdin();
+
+        loop {
+            input.clear();
+            print!("Elang Interpretter >> ");
+            stdout.flush()?;
+            stdin.read_line(&mut input)?;
+            println!("Read: {}", &input);
+        }
+    }
 
     pub fn interpret_file(&self, file_name: &str) -> Result<(), Error> {
         let file: std::fs::File = std::fs::File::open(file_name)?;
