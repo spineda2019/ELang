@@ -10,20 +10,25 @@ keywords to tell the "interpreter" what to do. All networking overhead is done
 by the interpreter for you:
 
 ```py
+# In general, this "language" has 2 types: strings and integers.
+# instructions are of the structure INSTRUCTION: VALUE
 # You must begin each script by specifying these 4 parameters, otherwise it is
 # invalid syntax and the program will quit
-protocol: udp
-format: raw
-address: 127.0.0.1
+protocol: "udp"
+format: "raw"
+address: "127.0.0.1"
 port: 42
 
-# easily send messages like this, no quotation marks needed!
-send: Hello World!
+# You will be able to store variables!
+store: "udp" as foo
+
+# easily send messages like this
+send: "Hello World!"
 
 # you can change parameters on the fly
-format: scpi
+format: "scpi"
 port: 5025
 
-send: *IDN?
+send: "*IDN?"
 ```
 
