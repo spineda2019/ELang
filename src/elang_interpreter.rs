@@ -71,5 +71,16 @@ impl<'a> ElangInterpreter<'a> {
         Ok(())
     }
 
-    fn interpret_line(&self, line: &str) {}
+    #[inline]
+    fn letter_splits_lexemes(letter: &char) -> bool {
+        *letter == ' ' || *letter == ':'
+    }
+
+    fn interpret_line(&self, line: &str) {
+        // get lexeme
+        let most_recent_lexeme: String = String::new();
+        for letter in line.chars() {
+            if Self::letter_splits_lexemes(&letter) {}
+        }
+    }
 }
