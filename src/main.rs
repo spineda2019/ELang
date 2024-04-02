@@ -15,7 +15,7 @@
  */
 
 mod elang_interpreter;
-mod keywords;
+mod token;
 
 use elang_interpreter::ElangInterpreter;
 use std::io::{Error, ErrorKind};
